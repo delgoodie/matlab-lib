@@ -21,13 +21,13 @@ function x = bairstow(p, a, b, es)
             fcp(j) = fbp(j)+r*fcp(j-1)+s*fcp(j-2);
         end
 
-        bp = flip(fbp)
-        cp = flip(fcp)
+        bp = flip(fbp);
+        cp = flip(fcp);
         cp = [cp 0 0 0 0];
 
-        deltas = linsolve([cp(2), cp(3) ; cp(1), cp(2)], [-bp(2) ; -bp(1)])
-        r = r + deltas(1)
-        s = s + deltas(2)
+        deltas = linsolve([cp(2), cp(3) ; cp(1), cp(2)], [-bp(2) ; -bp(1)]);
+        r = r + deltas(1);
+        s = s + deltas(2);
 
 
         if i > 1
@@ -41,7 +41,7 @@ function x = bairstow(p, a, b, es)
     end
 
     tbl.Properties.VariableNames=["iteration", "dr", "ds", "r", "s", "b0", "b1", "ea"];
-    tbl
+    tbl;
 
     bp = bp(3:length(bp));
 
