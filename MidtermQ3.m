@@ -1,4 +1,4 @@
-[t, V] = ode45(@rates, [0, 2*pi], [0; .1; .05; .01], odeset('RelTol', 1e-13));
+[t, V] = ode45(@rates, [0, 3*2*pi], [0; .1; .05; .01], odeset('RelTol', 1e-13));
 
 
 plot(t,V(:,3:4))
@@ -6,7 +6,7 @@ title('Space Tether Dynamics')
 xlabel('θ (rad)') 
 ylabel('γ,α (rad)') 
 legend({'α', 'γ'},'Location','southwest')
-xlim([0,2*pi])
+xlim([0,3*2*pi])
 
 
 function dy = rates(t, v)
