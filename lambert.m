@@ -31,8 +31,9 @@
   User M-functions required: stumpC and stumpS
 %}
 % ----------------------------------------------
+ 
 global mu
-
+ 
 %...Magnitudes of R1 and R2:
 r1 = norm(R1);
 r2 = norm(R2);
@@ -108,12 +109,12 @@ return
  
 %...Equation 5.38:
 function dum = y(z)
-    dum = r1 + r2 + A*(z*stuSin(z) - 1)/sqrt(stuCos(z));
+    dum = r1 + r2 + A*(z*S(z) - 1)/sqrt(C(z));
 end
  
 %...Equation 5.40:
 function dum = F(z,t)
-    dum = (y(z)/stuCos(z))^1.5*stuSin(z) + A*sqrt(y(z)) - sqrt(mu)*t;
+    dum = (y(z)/C(z))^1.5*S(z) + A*sqrt(y(z)) - sqrt(mu)*t;
 end
  
 %...Equation 5.43:
@@ -121,10 +122,19 @@ function dum = dFdz(z)
     if z == 0
         dum = sqrt(2)/40*y(0)^1.5 + A/8*(sqrt(y(0)) + A*sqrt(1/2/y(0)));
     else
-        dum = (y(z)/stuCos(z))^1.5*(1/2/z*(stuCos(z) - 3*stuSin(z)/2/stuCos(z)) ...
-               + 3*stuSin(z)^2/4/stuCos(z)) + A/8*(3*stuSin(z)/stuCos(z)*sqrt(y(z)) ...
-               + A*sqrt(stuCos(z)/y(z)));
+        dum = (y(z)/C(z))^1.5*(1/2/z*(C(z) - 3*S(z)/2/C(z)) ...
+               + 3*S(z)^2/4/C(z)) + A/8*(3*S(z)/C(z)*sqrt(y(z)) ...
+               + A*sqrt(C(z)/y(z)));
     end
+end
+ 
+%...Stumpff functions:
+function dum = C(z)
+    dum = stumpC(z);
+end
+ 
+function dum = S(z)
+    dum = stumpS(z);
 end
  
 end %lambert
